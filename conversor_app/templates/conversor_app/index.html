@@ -1,0 +1,39 @@
+{% extends 'conversor_app/base.html' %}
+
+{% block title %}Inicio - Conversor Studio{% endblock %}
+
+{% block content %}
+<div class="text-center mt-5 mb-5">
+    <h1 class="fw-bold" style="font-size: 3.5rem; letter-spacing: -1.5px;">Convierte tus archivos.<br>Sin complicaciones.</h1>
+    <p class="fs-5 mt-3" style="color: #86868b; font-weight: 400;">Selecciona una de las herramientas a continuación para empezar.</p>
+</div>
+
+<div class="row justify-content-center g-4 mt-2">
+    <!-- Tarjeta CSV a Excel -->
+    <div class="col-md-5">
+        <a href="{% url 'conversor_app:csv_to_excel' %}" class="apple-card p-5 text-center h-100">
+            <div class="icon-box icon-excel mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-file-earmark-spreadsheet-fill" viewBox="0 0 16 16">
+                  <path d="M6 12v-2h3v2H6z"/>
+                  <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0zM9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1zM3 9h10v1h-3v2h3v1h-3v2H9v-2H6v2H5v-2H3v-1h2v-2H3V9z"/>
+                </svg>
+            </div>
+            <h3 class="fw-bold mb-3" style="letter-spacing: -0.5px;">CSV a Excel</h3>
+            <p style="color: #86868b; line-height: 1.6;">Transforma tus bases de datos CSV en hojas de cálculo de Excel listas para trabajar y analizar.</p>
+        </a>
+    </div>
+
+    <!-- Tarjeta PDF a Word -->
+    <div class="col-md-5">
+        <a href="{% url 'conversor_app:pdf_to_word' %}" class="apple-card p-5 text-center h-100">
+            <div class="icon-box icon-word mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-file-earmark-word-fill" viewBox="0 0 16 16">
+                  <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0zM9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1zM5.485 6.879l1.036 4.144.997-3.655a.5.5 0 0 1 .964 0l.997 3.655 1.036-4.144a.5.5 0 0 1 .97.242l-1.5 6a.5.5 0 0 1-.967.01L8 9.402l-1.018 3.73a.5.5 0 0 1-.967-.01l-1.5-6a.5.5 0 1 1 .97-.242z"/>
+                </svg>
+            </div>
+            <h3 class="fw-bold mb-3" style="letter-spacing: -0.5px;">PDF a Word</h3>
+            <p style="color: #86868b; line-height: 1.6;">Convierte tus documentos PDF en archivos Word editables conservando su estructura y formato.</p>
+        </a>
+    </div>
+</div>
+{% endblock %}

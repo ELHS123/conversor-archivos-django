@@ -1,0 +1,61 @@
+{% extends 'conversor_app/base.html' %}
+
+{% block title %}{{ title }} - Conversor Studio{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center mt-4">
+    <div class="col-md-8 col-lg-7">
+        <div class="apple-card p-5">
+            <div class="text-center mb-4">
+                <h2 class="fw-bold" style="letter-spacing: -0.5px;">{{ title }}</h2>
+                <p class="mt-2" style="color: #86868b;">Sube el archivo que deseas convertir. Nosotros nos encargaremos del resto.</p>
+            </div>
+            
+            <form method="post" enctype="multipart/form-data" class="mt-4">
+                {% csrf_token %}
+                
+                {% if form.non_field_errors %}
+                    <div class="alert alert-danger" style="border-radius: 14px; background-color: #fff0f0; color: #d93025; border: none;">
+                        {% for error in form.non_field_errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                
+                <div class="mb-5">
+                    <!-- Zona de carga de archivos (Drag & Drop visual) -->
+                    <div style="position: relative; border: 2px dashed #c7c7cc; border-radius: 20px; padding: 50px 20px; text-align: center; background-color: #fafafa; cursor: pointer;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="#a1a1a6" class="bi bi-cloud-arrow-up-fill mb-3" viewBox="0 0 16 16">
+                          <path d="M8 2a5.53 5.53 0 0 0-3.594 1.342c-.766.66-1.321 1.52-1.464 2.383C1.266 6.095 0 7.555 0 9.318 0 11.366 1.708 13 3.781 13h8.906C14.502 13 16 11.57 16 9.773c0-1.636-1.242-2.969-2.834-3.194C12.923 3.999 10.69 2 8 2zm2.354 5.146a.5.5 0 0 1-.708.708L8.5 6.707V10.5a.5.5 0 0 1-1 0V6.707L6.354 7.854a.5.5 0 1 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2z"/>
+                        </svg>
+                        <h5 class="fw-bold" style="color: var(--apple-text);">Haz clic aquí o arrastra un archivo</h5>
+                        <p class="small mb-0" style="color: #86868b;">Límite máximo de 10MB por archivo.</p>
+                        
+                        <!-- Input oculto pero expandido para abarcar todo el cuadro -->
+                        <input type="file" name="{{ form.file.name }}" id="{{ form.file.id_for_label }}" required style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; opacity: 0; cursor: pointer;">
+                    </div>
+
+                    {% if form.file.errors %}
+                        <div class="text-danger mt-3 text-center small fw-medium">
+                            {% for error in form.file.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+                
+                <div class="text-center">
+                    <button type="submit" class="apple-btn w-100 fs-5" style="padding: 14px;">Comenzar Conversión</button>
+                </div>
+            </form>
+            
+        </div>
+        
+        <div class="text-center mt-4">
+            <a href="{% url 'conversor_app:home' %}" style="color: var(--apple-blue); text-decoration: none; font-weight: 500;">
+                &larr; Volver al inicio
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

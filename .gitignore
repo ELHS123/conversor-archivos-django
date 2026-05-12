@@ -1,0 +1,11 @@
+# Entornos virtuales
+venv/
+env/
+
+# Archivos de Python y Django
+__pycache__/
+*.pyc
+db.sqlite3
+
+# Archivos subidos por los usuarios
+media/
