@@ -56,7 +56,13 @@ def convert_csv_to_excel(csv_filename):
     
     # 3. Conversión usando Pandas
     try:
-        df = pd.read_csv(input_path)
+        # Intenta primero con la codificación y separador estándar (UTF-8 y coma)
+        try:
+            df = pd.read_csv(input_path)
+        except Exception:
+            # Si falla, intenta con la configuración típica de Excel en Windows/Español
+            df = pd.read_csv(input_path, encoding='latin-1', sep=';')
+            
         df.to_excel(output_path, index=False, engine='openpyxl')
         return excel_filename
     except Exception as e:
